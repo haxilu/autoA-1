@@ -7,7 +7,7 @@
 
 ### 怎么创建一个游戏脚本？
 1. 创建一个class继承TsFrame重写getFa和getFb方法即可。
-
+1. [王者荣耀刷金币脚本（dome）](https://github.com/qq292/autoA/blob/master/app/src/main/java/com/example/scriptx1/ScriptWzRy.java)`这个脚本仅用了不到60行代码`
 ### 示例代码:
 ```java
 public class ScriptTest extends TsFrame {
