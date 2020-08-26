@@ -82,15 +82,6 @@ public class ScriptTest extends TsFrame {
   
 对此项目有任何问题请联系我（QQ：2920007919）
 
-----
-
-
-<button onclick="alert('你好啊1')">Copy Text</button>
-<script>
-
-alert("你好啊2")
-<\script>
-
 
 
 
