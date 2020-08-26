@@ -46,7 +46,10 @@ public class ScriptTest extends TsFrame {
 1. ScreenLib.findColor() 相似度参数 值越小相似度越高（0为一模一样）
 
 ### 如果对有用请资助我
+
+
 ![avatar](https://github.com/qq292/autoA/blob/master/app/src/main/res/drawable/zfbQr.jpg)
+
 
 有任何问题请联系我（QQ：2920007919）
 
