@@ -1,13 +1,11 @@
 package com.example.scriptx1;
 
 import android.util.Log;
-
 import com.example.scriptx1.screendo.ScreenLib;
 import com.example.scriptx1.scriptframe.Fa;
 import com.example.scriptx1.scriptframe.Fb;
 import com.example.scriptx1.scriptframe.Fcallback;
 import com.example.scriptx1.scriptframe.TsFrame;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +40,6 @@ public class ScriptWzRy extends TsFrame {
         //点击屏幕继续
         fa.add(new Fa(0xd08612,"83|-50|0x713109,-58|-47|0xd6a41c,10|-92|0xf1dd64,-95|-34|0x325b9d",90,0.32,0.28,0.46,0.39));
 
-
         //再次挑战按钮
         fa.add(new Fa(0xf8eed8,"22|-13|0xfbf3dd,51|7|0xfbf3dd,-32|-34|0x785f36,-332|-26|0x24557f,-203|-15|0x2b5c85",90,0.76,0.86,0.95,0.98));
         return fa;
@@ -54,7 +51,6 @@ public class ScriptWzRy extends TsFrame {
         Map<String, List<Fb>> map = new HashMap<String, List<Fb>>();
         List<Fb> 主界面= new ArrayList<Fb>();
         主界面.add(new Fb(0xcaddef,"12|-2|0xabcde6,26|0|0x93b4ce,0|28|0x8697c9,22|31|0xe2e7f0,11|22|0xd4e3f7,10|9|0xdaedff",140,0.76,0.68,0.87,0.78));
-
 
         map.put("主界面",主界面);
         return map;
@@ -69,7 +65,6 @@ public class ScriptWzRy extends TsFrame {
                 ScreenLib.screenSlide(1357,561,990,572);
 
             }
-
         }
     }
 
@@ -88,7 +83,6 @@ public class ScriptWzRy extends TsFrame {
                 //下一页 按钮
                 ScreenLib.findColorClick(0xddeffb,"40|-6|0x245b85,-58|-8|0x265983,143|-5|0x235c86",90,0.70,0.79,0.86,0.90);
             }
-
         }
     }
 }
