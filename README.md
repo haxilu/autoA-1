@@ -45,4 +45,5 @@ public class ScriptTest extends TsFrame {
 1. ScreenLib.findColor() x,y,x2,y2找色范围，可以是整数，也可以是小数（即百分比）
 1. ScreenLib.findColor() 相似度参数 值越小相似度越高（0为一模一样）
 
-
+### 如果有用请资助我
+![avatar](http://12489212.d.cturls.net/down/12489212/img/1598467881822.jpg)
