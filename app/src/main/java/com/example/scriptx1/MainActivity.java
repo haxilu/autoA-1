@@ -181,6 +181,12 @@ public class MainActivity extends AppCompatActivity {
             map3.put("title", "脚本测试");
             map3.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
+
+            Map<String, Object> map4 = new HashMap<String, Object>();
+            map4.put("title", "自动爬塔");
+            map4.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
+
+            listData.add(map4);
             listData.add(map1);
             listData.add(map2);
             listData.add(map3);
@@ -225,6 +231,11 @@ public class MainActivity extends AppCompatActivity {
                     case "脚本测试":
                         MainActivity.script = ScriptTest.getInstance();
                         break;
+
+                    case "自动爬塔":
+                        MainActivity.script = ScriptZdpt.getInstance();
+                        break;
+
 
                 }
             }
