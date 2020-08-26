@@ -1,14 +1,14 @@
 
-### 类
+## 类
 1. ScreenLib类 封装了模糊找色，屏幕点击，屏幕滑动等方法。
 1. TsFrame抽象类 封装了脚本的逻辑流程（帮助你快速开发脚本）
 1. Fa和Fb 都是继承自F，他们大部分方法都是一样的。重新封装了屏幕点击和模糊找色的方法给TsFrame.
 1. 继承关系：ScreenLib → F → Fa（Fb同此）
 
-### 怎么创建一个游戏脚本？
+## 怎么创建一个游戏脚本？
 1. 创建一个class继承TsFrame重写getFa和getFb方法即可。
 1. [王者荣耀刷金币脚本（dome）](https://github.com/qq292/autoA/blob/master/app/src/main/java/com/example/scriptx1/ScriptWzRy.java)`这个脚本仅用了不到60行代码`
-### 示例代码:
+## 示例代码:
 ```java
 public class ScriptTest extends TsFrame {
    
@@ -37,7 +37,7 @@ public class ScriptTest extends TsFrame {
 }
 ```
 
-### 触动精灵用户快速上手
+## 触动精灵用户快速上手
 1. 取色工具可以用触动精灵的取色工具`TSColorPick`触动精灵官网下载（手机取色工具代码好像被我误删了）
 1. ScreenLib.findColor()方法参数同触动精灵的findMultiColorInRegionFuzzy()函数（细微区别下面解说），所以`TSColorPick`自动生成的代码可以直接把参数给ScreenLib.findColor()
    
@@ -45,7 +45,7 @@ public class ScriptTest extends TsFrame {
 1. ScreenLib.findColor() x,y,x2,y2找色范围，可以是整数，也可以是小数（即百分比）
 1. ScreenLib.findColor() 相似度参数 值越小相似度越高（0为一模一样）
 
-### 如果对您有用请资助我
+## 如果对您有用请资助我
   
 （支付宝）
 ```
