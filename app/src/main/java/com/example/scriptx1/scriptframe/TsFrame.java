@@ -1,58 +1,31 @@
 package com.example.scriptx1.scriptframe;
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public abstract class TsFrame {
 
-    private List<Fa> mFa;
-    private Map<String, List<Fb>> mFb;
-    private int flag = 0;
-    private List<Fb> subFb;
+    private List<Page> mPages;//脚本界面特征列表
+    private int flag = 0; //控制脚本执行和退出
+    private boolean debug;
+    private Page page;
+    private ArrayList<String> upName = new ArrayList<String>(){{add(null);add(null);}};
 
     public TsFrame() {
-        this.mFa = getFa();
-        this.mFb = getFb();
+        this.mPages = getPages();
+
 
     }
 
-    public int getFlag() {
-        return flag;
+
+    protected void debug() {
+        this.debug = true;
     }
 
-    protected abstract List<Fa> getFa();
-
-    public abstract Map<String, List<Fb>> getFb();
-
-
-    //脚本逻辑（页面）
-    private void body() throws InterruptedException {
-
-        //Fa和Fb只要有回调 就不往下执行
-        //Fa有name则根据name获取Fb的list  无name则直接点击
-        //Fb有无name都点击
-
-        for (Fa fa : mFa) {
-            if (flag == 0) {
-                return;
-            }
-
-            subFb = fa.action(mFb);//页面操作
-
-            if (subFb != null) {//子页面操作
-                for (Fb fb : subFb) {
-                    if (flag == 0) {
-                        return;
-                    }
-                    fb.action();
-                }
-            }
-        }
-
-        if (flag == 1) {
-            body();
-        }
-    }
+    protected abstract List<Page> getPages();
 
     //启动脚本
     public void start() {
@@ -75,6 +48,61 @@ public abstract class TsFrame {
     //结束脚本
     public void finish() {
         flag = 0;
+    }
+
+    //获取脚本执行状态
+    public int getFlag() {
+        return flag;
+    }
+    //记录上一个界面的name值
+    private void saveUpName(String name) {
+        if (!name.equals(upName.get(upName.size()-1))){
+            upName.add(name);
+        }
+        if (upName.size()>5){
+            upName.remove(0);
+        }
+
+    }
+    //脚本逻辑（页面）
+    private void body() throws InterruptedException {
+
+        for (Page pag : mPages) {
+            //Log.i("qqqqqqqqqq", "上一个界面是：" + upName.get(upName.size()-2));
+            if (flag == 0) return;
+
+            page=pag.action(debug,true);// 找到界面
+            if (page.isFind){//找到界面
+                saveUpName(pag.name);//设置上一个界面的 name
+
+                if (page.upName!=null){
+                    if (page.upName.equals(upName.get(upName.size()-2))){
+                        page.action(debug,false);
+                    }else{
+                        continue;
+                    }
+                }
+
+
+                if (pag.fbList != null) {//子页面操作
+                    for (Fb fb : pag.fbList) {
+                        if (flag == 0) {
+                            return;
+                        }
+                        fb.action(debug);
+                    }
+                }
+
+            }
+
+
+
+
+        }
+
+        if (flag == 1) {
+            body();
+        }
     }
 
 

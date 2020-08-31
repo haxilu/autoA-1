@@ -4,13 +4,14 @@ import android.content.Intent;
 
 import com.example.scriptx1.MainActivity;
 import com.example.scriptx1.MyAccessibilityService;
-import com.example.scriptx1.scriptframe.Fa;
 import com.example.scriptx1.scriptframe.Fb;
+import com.example.scriptx1.scriptframe.Page;
 
 import java.util.ArrayList;
 
 public class ScreenLib {
-    private static int times=500;
+    private static int times=1000;
+    private static int range=5;
     //取随机数
     private static int getRandom(int start,int end){
         return (int) (Math.random()*(end-start+1)+start);
@@ -19,19 +20,8 @@ public class ScreenLib {
     public static void sleep(int sle) throws InterruptedException {
         Thread.sleep(sle);
     }
-    public int[] findColor(Fa fa) throws InterruptedException {
-        return fa.findColor();
-    }
-    public int[] findColor(Fb fb) throws InterruptedException {
-        return fb.findColor();
-    }
 
-    public void click(Fa fa) throws InterruptedException {
-        fa.click();
-    }
-    public void click(Fb fb) throws InterruptedException {
-        fb.click();
-    }
+
 
     //屏幕滑动
     public static void screenSlide(int x, int y, int x2, int y2) throws InterruptedException {
@@ -65,23 +55,18 @@ public class ScreenLib {
         MainActivity.CONTEXT.startService(intent);
 
     }
-    //点击屏幕 点击范围
-    public static void click(int x, int y, int r) {
-        x=getRandom(x-r,x+r);
-        y=getRandom(y-r,y+r);
-        click(x,y);
-    }
+
 
 
     //点击屏幕 延时
-    public static void click(int x, int y, float t) throws InterruptedException {
+    public static void click(int x, int y, int t) throws InterruptedException {
         click(x,y);
-        sleep((int)t);
+        sleep(t);
     }
 
 
     //点击屏幕 范围 延时
-    public static void click(int x, int y, float t,int r) throws InterruptedException {
+    public static void click(int x, int y, int t,int r) throws InterruptedException {
         x=getRandom(x-r,x+r);
         y=getRandom(y-r,y+r);
         click(x,y,t);
@@ -113,7 +98,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, int x1, int y1, int x2, int y2) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)times);
+            click(xy[0],xy[1],times,range);
             return xy;
         }
         return null;
@@ -122,8 +107,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, int x1, int y1, int x2, int y2,int time) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time);
-
+            click(xy[0],xy[1],time,range);
             return xy;
         }
         return null;
@@ -132,7 +116,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, int x1, int y1, int x2, int y2,int time,int r) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time,r);
+            click(xy[0],xy[1],time,r);
 
             return xy;
         }
@@ -144,7 +128,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, double x1, double y1, double x2, double y2) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)times);
+            click(xy[0],xy[1],times,range);
             return xy;
         }
         return null;
@@ -154,7 +138,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, double x1, double y1, double x2, double y2, int time) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time);
+            click(xy[0],xy[1],times,range);
             return xy;
         }
         return null;
@@ -164,7 +148,7 @@ public class ScreenLib {
     public static int[] findColorClick(int mainColor, String subColors, double distance, double x1, double y1, double x2, double y2, int time, int r) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time,r);
+            click(xy[0],xy[1],time,r);
             return xy;
         }
         return null;
@@ -175,7 +159,7 @@ public class ScreenLib {
     public static int[] findColorClick(int[] mainColor, ArrayList<Integer[]> subColors, double distance, double x1, double y1, double x2, double y2, int time, int r) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time,r);
+            click(xy[0],xy[1],time,r);
             return xy;
         }
         return null;
@@ -184,7 +168,7 @@ public class ScreenLib {
     public static int[] findColorClick(int[] mainColor, ArrayList<Integer[]> subColors, double distance, double x1, double y1, double x2, double y2, int time, int r,int xx, int yy) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0]+xx,xy[1]+yy,(float)time,r);
+            click(xy[0]+xx,xy[1]+yy,time,r);
             return xy;
         }
         return null;
@@ -193,7 +177,7 @@ public class ScreenLib {
     public static int[] findColorClick(int[] mainColor, ArrayList<Integer[]> subColors, double distance, int x1, int y1, int x2, int y2,int time,int r) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0],xy[1],(float)time,r);
+            click(xy[0],xy[1],time,r);
             return xy;
         }
         return null;
@@ -204,7 +188,7 @@ public class ScreenLib {
     public static int[] findColorClick(int[] mainColor, ArrayList<Integer[]> subColors, double distance, int x1, int y1, int x2, int y2,int time,int r, int xx, int yy) throws InterruptedException {
         int[] xy = findColor(mainColor, subColors, distance, x1, y1, x2, y2);
         if (xy != null) {
-            click(xy[0]+xx,xy[1]+yy,(float)time,r);
+            click(xy[0]+xx,xy[1]+yy,time,r);
             return xy;
         }
         return null;

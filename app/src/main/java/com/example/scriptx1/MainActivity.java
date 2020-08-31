@@ -168,29 +168,14 @@ public class MainActivity extends AppCompatActivity {
     private void initAdapter() {
         if (listData == null) {
             listData = new ArrayList<Map<String, Object>>();
-            Map<String, Object> map1 = new HashMap<String, Object>();
-            map1.put("title", "王者荣耀自动刷金币");
-            map1.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
-
-
-            Map<String, Object> map2 = new HashMap<String, Object>();
-            map2.put("title", "胡莱三国自动找矿");
-            map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
             Map<String, Object> map3 = new HashMap<String, Object>();
-            map3.put("title", "脚本测试");
+            map3.put("title", "脚本测试999");
             map3.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
 
-            Map<String, Object> map4 = new HashMap<String, Object>();
-            map4.put("title", "自动爬塔");
-            map4.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
-            listData.add(map4);
-            listData.add(map1);
-            listData.add(map2);
             listData.add(map3);
-
         }
 
     }
@@ -220,21 +205,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 switch(((Map<String, Object>)listData.get(position)).get("title").toString()){
-                    case "王者荣耀自动刷金币":
-                        MainActivity.script = ScriptWzRy.getInstance();
-                        break;
 
-                    case "胡莱三国自动找矿":
-                        MainActivity.script = ScriptZdZk.getInstance();
-                        break;
-
-                    case "脚本测试":
+                    case "脚本测试999":
                         MainActivity.script = ScriptTest.getInstance();
                         break;
 
-                    case "自动爬塔":
-                        MainActivity.script = ScriptZdpt.getInstance();
-                        break;
+
 
 
                 }
