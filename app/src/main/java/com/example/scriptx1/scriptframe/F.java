@@ -36,9 +36,22 @@ public abstract class F<T extends F<T>> extends ScreenLib {
     protected Fcallback callBack;//回调
     protected long time;
     protected long tu;
+    protected int[] aClick;
     private boolean tus=true;
 
 
+    public T addClick(int x, int y){
+        if (aClick==null){
+            aClick = new int[]{x,y};
+        }
+        return (T)this;
+    }
+    protected void  _addClick(){
+        if (aClick!=null){
+            click(aClick[0],aClick[1]);
+        }
+
+    }
 
     public T setTime(long time,boolean ... tus) {
         this.time = time;
@@ -175,6 +188,8 @@ public abstract class F<T extends F<T>> extends ScreenLib {
         analysisSubColor = GBData.getColorListSub(subColor);//16进制文本颜色转成10进制颜色数组（子颜色列表）
         analysisMainColor = color16To10_int(mainColor);//文本转10进制颜色（主颜色）
     }
+
+
 
 
     protected int[] findColor() {

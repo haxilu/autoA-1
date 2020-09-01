@@ -19,9 +19,8 @@ public class ScreenLib {
     //延时
     public static void sleep(int sle) throws InterruptedException {
         Thread.sleep(sle);
+
     }
-
-
 
     //屏幕滑动
     public static void screenSlide(int x, int y, int x2, int y2) throws InterruptedException {

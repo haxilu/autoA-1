@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class Page extends F<Page> {
     protected List<Fb> fbList;
-    protected String upName;
     protected boolean isFind;
 
     public Page(int mainColor, String subColor, double distance, int x1, int y1, int x2, int y2) {
@@ -45,11 +44,6 @@ public class Page extends F<Page> {
     }
 
 
-    //用来对比上一个界面的name
-    public Page setUpName(String upName) {
-        this.upName = upName;
-        return this;
-    }
 
     public Page action(boolean debug, boolean b) throws InterruptedException {
         this.isFind = false;//没有找到颜色
@@ -58,9 +52,7 @@ public class Page extends F<Page> {
             int x = xy[0] + partialX;
             int y = xy[1] + partialY;
             this.isFind = true;
-            if (this.upName != null && b) {
-                return this;
-            }
+
 
             if (debug) {
                 Log.i("找色log-a", String.format("找到【%s】{x=%s,y=%s,z=%s}", name, xy[0], xy[1], xy[2]));
@@ -79,6 +71,7 @@ public class Page extends F<Page> {
                 }
 
             }
+            _addClick();//附加点击
 
         }
         return this;
