@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public static int w, h;
     public static AlertDialog.Builder bu;
     public ListView listView;
-    List listData;
+    List<Map<String, Object>> listData;
     Menu MyMenu;
     public static TsFrame script = null;
 
@@ -167,14 +167,22 @@ public class MainActivity extends AppCompatActivity {
     //初始化listView的数据
     private void initAdapter() {
         if (listData == null) {
-            listData = new ArrayList<Map<String, Object>>();
+            listData = new ArrayList<>();
 
-            Map<String, Object> map3 = new HashMap<String, Object>();
+            Map<String, Object> map3 = new HashMap<>();
             map3.put("title", "脚本测试999");
             map3.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
+            Map<String, Object> map1 = new HashMap<>();
+            map1.put("title", "胡莱三国自动找矿");
+            map1.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
 
+            Map<String, Object> map2 = new HashMap<>();
+            map2.put("title", "胡莱三国自动找矿2");
+            map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
 
+            listData.add(map2);
+            listData.add(map1);
             listData.add(map3);
         }
 
@@ -204,12 +212,15 @@ public class MainActivity extends AppCompatActivity {
                     ColorSelectedFloatWindowBig.setButtonStatus();
                 }
 
-                switch(((Map<String, Object>)listData.get(position)).get("title").toString()){
-
+                switch(listData.get(position).get("title").toString()){
+                    case "胡莱三国自动找矿2":
+                        MainActivity.script = new ScriptHlsg2();
+                        break;
                     case "脚本测试999":
                         MainActivity.script = ScriptTest.getInstance();
                         break;
-
+                    case "胡莱三国自动找矿":
+                        MainActivity.script = new ScriptHlsg();
 
 
 

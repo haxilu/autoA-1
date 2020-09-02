@@ -33,7 +33,7 @@ public abstract class F<T extends F<T>> extends ScreenLib {
     protected List<T> anyList;//fList任意一个为true 返回 true
     protected List<T> allList;//fList全部为true 返回 true
     protected boolean isClick;//默认点击
-    protected Fcallback callBack;//回调
+    protected Fcallback callBack=null;//回调
     protected long time;
     protected long tu;
     protected int[] aClick;
@@ -95,8 +95,8 @@ public abstract class F<T extends F<T>> extends ScreenLib {
         return (T) this;
     }
 
-    public T setPartialX(int px) {
-        this.partialX = px;
+    public T setPartialX(int partialX) {
+        this.partialX = partialX;
         return (T) this;
     }
 
@@ -250,7 +250,7 @@ public abstract class F<T extends F<T>> extends ScreenLib {
         return xy;
     }
     //找色
-    protected int[] findColorF() throws InterruptedException {
+    public int[] findColorF() throws InterruptedException {
         if (argsFlag == 1) {
             return findColor(analysisMainColor, analysisSubColor, distance, x1, y1, x2, y2);
         } else if (argsFlag == 0) {
