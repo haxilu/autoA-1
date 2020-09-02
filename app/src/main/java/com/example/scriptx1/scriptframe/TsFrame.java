@@ -10,11 +10,14 @@ public abstract class TsFrame {
 
     private List<Page> mPages;//脚本界面特征列表
     private int flag = 0; //控制脚本执行和退出
-    private boolean debug;
+    public boolean debug;
     private Page mPage;
     private Fb mFb;
-    boolean isd=false;
-    private ArrayList<String> upName = new ArrayList<String>(){{add(null);add(null);}};
+    boolean isd = false;
+    private ArrayList<String> upName = new ArrayList<String>() {{
+        add(null);
+        add(null);
+    }};
 
     public TsFrame() {
         this.mPages = getPages();
@@ -56,37 +59,32 @@ public abstract class TsFrame {
     public int getFlag() {
         return flag;
     }
+
     //记录上一个界面的name值
     private void saveUpName(String name) {
-        if (!name.equals(upName.get(upName.size()-1))){
+        if (!name.equals(upName.get(upName.size() - 1))) {
             upName.add(name);
         }
-        if (upName.size()>5){
+        if (upName.size() > 5) {
             upName.remove(0);
         }
 
     }
+
     //脚本逻辑（页面）
     private void body() throws InterruptedException {
-
+        // Log.i("qqqqqqqqqq", "上一个界面是：" + upName.get(upName.size()-2));
         for (Page pag : mPages) {
-           // Log.i("qqqqqqqqqq", "上一个界面是：" + upName.get(upName.size()-2));
             if (flag == 0) return;
-
-            mPage=pag.action(debug,true);// 找到界面
-            if (mPage.isFind){//找到界面
+            mPage = pag.action(debug, true);// 找到界面
+            if (mPage.isFind) {//找到界面
                 if (pag.fbList != null) {//子页面操作
                     for (Fb fb : pag.fbList) {
-                        if (flag == 0) {
-                            return;
-                        }
-                       fb.action(debug,this);
-
+                        if (flag == 0) return;
+                        fb.action(this);
                     }
                 }
-
             }
-
         }
 
         if (flag == 1) {

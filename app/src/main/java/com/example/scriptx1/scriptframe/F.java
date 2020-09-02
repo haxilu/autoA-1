@@ -34,9 +34,12 @@ public abstract class F<T extends F<T>> extends ScreenLib {
     protected List<T> allList;//fList全部为true 返回 true
     protected boolean isClick;//默认点击
     protected Fcallback callBack=null;//回调
+    protected UnFcallback UncallBack=null;//回调
+
     protected long time;
     protected long tu;
     protected int[] aClick;
+    protected int[] bClick;
     private boolean tus=true;
 
 
@@ -46,9 +49,24 @@ public abstract class F<T extends F<T>> extends ScreenLib {
         }
         return (T)this;
     }
+
+    public T addUnClick(int x, int y){
+        if (bClick==null){
+            bClick = new int[]{x,y};
+        }
+        return (T)this;
+    }
+
     protected void  _addClick(){
         if (aClick!=null){
             click(aClick[0],aClick[1]);
+        }
+
+    }
+
+    protected void  _addUnClick(){
+        if (bClick!=null){
+            click(bClick[0],bClick[1]);
         }
 
     }
@@ -92,6 +110,10 @@ public abstract class F<T extends F<T>> extends ScreenLib {
 
     public T setCallBack(Fcallback callBack) {
         this.callBack = callBack;
+        return (T) this;
+    }
+    public T setUnCallBack(UnFcallback UncallBack) {
+        this.UncallBack = UncallBack;
         return (T) this;
     }
 

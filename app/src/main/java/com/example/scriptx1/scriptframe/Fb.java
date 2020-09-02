@@ -39,16 +39,16 @@ public class Fb extends F<Fb> {
 
     //--------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public Fb action(boolean debug, TsFrame ts) throws InterruptedException {
+    public Fb action(TsFrame ts) throws InterruptedException {
         if (ts.getFlag() == 0) return this;
         int[] xy = findColorT();
+        //找到颜色
         if (xy != null && findColorAll() && findColorAny()) { //下面是界面内的操作
             int x = xy[0] + partialX;
             int y = xy[1] + partialY;
 
-            if (debug) {
-                Log.i("找色log-b", String.format("找到【%s】{x=%s,y=%s,z=%s}", name, xy[0], xy[1], xy[2]));
-            }
+            if (ts.debug)Log.i("找色log-b", String.format("找到【%s】{x=%s,y=%s,z=%s}", name, xy[0], xy[1], xy[2]));
+
             //有回调不往下执行
             if (callBack != null) {
                 callBack.fCallback(x, y, t, r);
@@ -57,14 +57,20 @@ public class Fb extends F<Fb> {
                 //点击(默认点击)
                 if (isClick) {
                     if (ts.getFlag() == 0) return this;
-                    if (debug) Log.i("点击log-b", String.format("点击【%s】{x=%s,y=%s,z=%s}", name, xy[0], xy[1], xy[2]));
+                    if (ts.debug) Log.i("点击log-b", String.format("点击【%s】{x=%s,y=%s,z=%s}", name, xy[0], xy[1], xy[2]));
                     click(x, y, t, r);
-                    if (isAgain)action(debug, ts);
+                    if (isAgain)action(ts);
 
                 }
             }
             _addClick();//附加点击
 
+        }else{//没有找到颜色
+            if (UncallBack!=null){
+                UncallBack.unfCallback();
+            }
+
+            _addUnClick();//附加点击
         }
         return this;
     }

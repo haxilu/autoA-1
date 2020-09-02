@@ -21,7 +21,6 @@ public class GBData {
             Log.w(TAG, "getColor: reader is null");
             return null;
         }
-        // 从虚拟显示器读取一张图片
         try {
             image = reader.acquireLatestImage();
         }catch (IllegalStateException e){
@@ -35,24 +34,18 @@ public class GBData {
             }
             return null;//bitmap
         }
-        //得到图片
         int width = image.getWidth();
         int height = image.getHeight();
-
-        //获取一帧 所有像素
         final Image.Plane[] planes = image.getPlanes();
-
         final ByteBuffer buffer = planes[0].getBuffer();
         int pixelStride = planes[0].getPixelStride();
         int rowStride = planes[0].getRowStride();
         int rowPadding = rowStride - pixelStride * width;
         if (bitmap == null) {
-
             bitmap = Bitmap.createBitmap(width + rowPadding / pixelStride, height, Bitmap.Config.ARGB_8888);
         }
         bitmap.copyPixelsFromBuffer(buffer);
         image.close();
-
         return bitmap;
     }
 
@@ -78,7 +71,6 @@ public class GBData {
         return colorArraySub;
     }
     public static String to0xStr(String s){
-
         return s.replaceFirst("ff","0x");
     }
 
@@ -92,7 +84,6 @@ public class GBData {
         return Math.sqrt((2 + rmean/256) * (Math.pow(R, 2)) + 4 * (Math.pow(G, 2)) + (2 + (255 - rmean) / 256) * (Math.pow(B, 2)));
     }
 
-
     public static int[] color16To10_Str(String s16){ //16转10进制RGB颜色
         //0x05cc65
         String R16 = String.format("%s%s", String.valueOf(s16.charAt(2)), String.valueOf(s16.charAt(3)));
@@ -104,7 +95,6 @@ public class GBData {
         return new int[]{R10,G10,B10};
     }
     public static int[] color16To10_int(int s16) {//返回RGB数组
-
         return new int[]{Color.red(s16), Color.green(s16), Color.blue(s16)};
     }
 
