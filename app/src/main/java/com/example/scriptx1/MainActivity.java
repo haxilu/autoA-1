@@ -181,6 +181,10 @@ public class MainActivity extends AppCompatActivity {
             map2.put("title", "胡莱三国自动找矿2");
             map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
 
+            Map<String, Object> map4 = new HashMap<>();
+            map2.put("title", "虚拟大师");
+            map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
+            listData.add(map4);
             listData.add(map2);
             listData.add(map1);
             listData.add(map3);
@@ -221,7 +225,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case "胡莱三国自动找矿":
                         MainActivity.script = new ScriptHlsg();
-
+                        break;
+                    case "虚拟大师":
+                        MainActivity.script = new ScriptSs();
 
 
                 }
