@@ -182,8 +182,8 @@ public class MainActivity extends AppCompatActivity {
             map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
 
             Map<String, Object> map4 = new HashMap<>();
-            map2.put("title", "虚拟大师");
-            map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
+            map4.put("title", "虚拟大师");
+            map4.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
             listData.add(map4);
             listData.add(map2);
             listData.add(map1);
