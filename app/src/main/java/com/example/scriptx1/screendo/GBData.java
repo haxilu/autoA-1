@@ -9,6 +9,8 @@ import android.util.Log;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
+import static com.example.scriptx1.screendo.ScreenLib.sleep;
+
 public class GBData {
     private static final String TAG = "GBData";
     public static ImageReader reader;
@@ -17,6 +19,12 @@ public class GBData {
 
 
     public static Bitmap getImageBitmap() { //截图
+
+        try {
+            sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         if (reader == null){
             Log.w(TAG, "getColor: reader is null");
             return null;

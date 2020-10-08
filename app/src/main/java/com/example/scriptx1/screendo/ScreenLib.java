@@ -23,7 +23,7 @@ public class ScreenLib {
     }
 
     //屏幕滑动
-    public static void screenSlide(int x, int y, int x2, int y2) throws InterruptedException {
+    public static void screenSlide(int x, int y, int x2, int y2) {
         Intent intent = new Intent(MainActivity.CONTEXT, MyAccessibilityService.class);
         intent.putExtra(MyAccessibilityService.ACTION, MyAccessibilityService.SLIDE);//滑动操作
         intent.putExtra("x", x);
@@ -31,7 +31,12 @@ public class ScreenLib {
         intent.putExtra("x2", x2);
         intent.putExtra("y2", y2);
         MainActivity.CONTEXT.startService(intent);
-        sleep(600);
+
+        try {
+            sleep(600);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
     //屏幕滑动 百分比
@@ -58,9 +63,13 @@ public class ScreenLib {
 
 
     //点击屏幕 延时
-    public static void click(int x, int y, int t) throws InterruptedException {
+    public static void click(int x, int y, int t)  {
         click(x,y);
-        sleep(t);
+        try {
+            sleep(t);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
