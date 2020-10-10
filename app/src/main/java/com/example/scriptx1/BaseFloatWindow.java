@@ -54,6 +54,7 @@ public abstract class BaseFloatWindow {
         if (Build.VERSION.SDK_INT >= 23) {
             if (!Settings.canDrawOverlays(mContext)) {
                 MainActivity.bu.show();//悬浮窗对话框
+                MainActivity.f=null;
             } else {
                 //Android6.0以上
                 mWindowManager.addView(mView, mLayoutParams);

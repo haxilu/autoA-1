@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
     //初始化悬浮窗
     private void initFloatWindow() {
         if (f == null) {
-            f = new ColorSelectedFloatWindowBig(this, R.layout.f_layout);
+            f = new ColorSelectedFloatWindowBig(MainActivity.CONTEXT, R.layout.f_layout);
             f.floatWindowShow();
         } else {
             f.floatWindowShow();
