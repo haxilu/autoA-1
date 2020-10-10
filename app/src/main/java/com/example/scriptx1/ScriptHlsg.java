@@ -48,8 +48,10 @@ public class ScriptHlsg extends TsFrame {
                             }
 
                             小矿有无= 小矿.findColorF() != null;
+                            ScreenLib.setKeep(true);
                             中矿有无= 中矿.findColorF() != null;
                             大矿有无= 大矿.findColorF() != null;
+                            ScreenLib.setKeep(false);
 
                         }
                     })

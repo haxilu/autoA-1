@@ -12,7 +12,13 @@ import java.util.ArrayList;
 public class ScreenLib {
     private static int times=1000;
     private static int range=5;
+    private static  boolean keep;
     //取随机数
+
+    public static void setKeep(boolean b){
+        ScreenLib.keep=b;
+    }
+
     private static int getRandom(int start,int end){
         return (int) (Math.random()*(end-start+1)+start);
     }
@@ -83,12 +89,17 @@ public class ScreenLib {
 
     //多点找色
     public static int[] findColor(int mainColor, String subColors, double distance, int x1, int y1, int x2, int y2) {
-        GBData.getImageBitmap();
+        if (!ScreenLib.keep){
+            GBData.getImageBitmap();
+        }
+
         return GBData.MultiPointFindColor(mainColor, subColors, distance, x1, y1, x2, y2);
     }
     //多点找色（优化）
     public static int[] findColor(int[] mainColor, ArrayList<Integer[]> subColors, double distance, int x1, int y1, int x2, int y2) {
-        GBData.getImageBitmap();
+        if (!ScreenLib.keep){
+            GBData.getImageBitmap();
+        }
         return GBData.MultiPointFindColor(mainColor, subColors, distance, x1, y1, x2, y2);
     }
     //百分比找色范围
