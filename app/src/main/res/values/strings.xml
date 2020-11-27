@@ -10,4 +10,5 @@
     <string name="menuiy">竖屏</string>
     <string name="menuix">横屏</string>
     <string name="float_string_but">run</string>
+    <string name="enter_init">保存</string>
 </resources>

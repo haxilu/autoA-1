@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
 import android.graphics.Path;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -44,7 +45,21 @@ public class MyAccessibilityService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
 
-        ParentNode = getRootInActiveWindow();
+//        ParentNode = getRootInActiveWindow();
+//        if (ParentNode!=null){
+//
+//
+//            List<AccessibilityNodeInfo> nodes = ParentNode.findAccessibilityNodeInfosByText(" ");
+//            if (!nodes.isEmpty()){
+//                Bundle arguments = new Bundle();
+//                arguments.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,"现在是加好友时间！");
+//                nodes.get(0).performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments);
+//
+//                }
+//
+//        }
+
+
 //        if (ParentNode != null) {
 //                List<AccessibilityNodeInfo> nodeInfoList2 = ParentNode.findAccessibilityNodeInfosByText("赞");
 //                if (!nodeInfoList2.isEmpty()){

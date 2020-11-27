@@ -46,6 +46,8 @@ public class Page extends F<Page> {
 
 
     public Page action(boolean debug, boolean b) throws InterruptedException {
+        if(!getCheckBox())return this;//没有选中复选框
+
         this.isFind = false;//没有找到颜色
         int[] xy = findColorT();
         //找到颜色

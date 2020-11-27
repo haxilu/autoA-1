@@ -21,9 +21,10 @@ public class GBData {
     public static Bitmap getImageBitmap() { //截图
 
         try {
-            sleep(100);
+            sleep(50);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+
+            Log.i("error","位置错误！");
         }
         if (reader == null){
             Log.w(TAG, "getColor: reader is null");

@@ -1,6 +1,9 @@
 package com.example.scriptx1.scriptframe;
 
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.example.scriptx1.MainActivity;
 import com.example.scriptx1.screendo.GBData;
@@ -26,7 +29,6 @@ public abstract class F<T extends F<T>> extends ScreenLib {
     private ArrayList<Integer[]> analysisSubColor;
     private int[] analysisMainColor;
 
-
     protected String name;//唯一标志 不要设置一样的name
     protected int partialX;//x的偏移
     protected int partialY;//y的偏移
@@ -35,13 +37,27 @@ public abstract class F<T extends F<T>> extends ScreenLib {
     protected boolean isClick;//默认点击
     protected Fcallback callBack=null;//回调
     protected UnFcallback UncallBack=null;//回调
-
+    String is;
     protected long time;
     protected long tu;
     protected int[] aClick;
     protected int[] bClick;
     private boolean tus=true;
 
+    private  boolean mCheckBox = true;
+    public T setCheckBox(String is){
+        this.is = is;
+        return (T)this;
+    }
+
+    public boolean getCheckBox(){
+//        if (is!=null){
+//            Log.i("999999999", String.format("%s：%s", is,MainActivity.sp.getBoolean(is,true)));
+//        }
+
+        if(MainActivity.sp==null)return true;
+       return  MainActivity.sp.getBoolean(is,true);
+    }
 
     public T addClick(int x, int y){
         if (aClick==null){

@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.hardware.display.DisplayManager;
 
 import android.media.ImageReader;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +32,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaProjectionManager mMediaProjectionManager;
     private static MediaProjection mMediaProjection;
     public static ImageReader MimageReader;
+    public static SharedPreferences sp;
 
 
 
@@ -87,7 +91,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = new MenuInflater(this);
         menuInflater.inflate(R.menu.menui, menu);
+
         MyMenu=menu;
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -173,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             map3.put("title", "脚本测试999");
             map3.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配多分辨率。使用前请开启无障碍服务。");
 
+
             Map<String, Object> map1 = new HashMap<>();
             map1.put("title", "胡莱三国自动找矿");
             map1.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
@@ -182,8 +189,15 @@ public class MainActivity extends AppCompatActivity {
             map2.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
 
             Map<String, Object> map4 = new HashMap<>();
-            map4.put("title", "虚拟大师");
+            map4.put("title", "触动精灵（测试用）");
             map4.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）");
+
+            Map<String, Object> map5 = new HashMap<>();
+            map5.put("title", "泡面三国");
+            map5.put("describe", "作者：黑猫\nQQ：2920007919/3139302743\n简介：适配分辨率（720*1280  dpi：320）\n长按进入设置界面!");
+            map5.put("initPage",PaoMianInit.class);
+
+            listData.add(map5);
             listData.add(map4);
             listData.add(map2);
             listData.add(map1);
@@ -196,9 +210,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         windowManager = getWindowManager();
         CONTEXT = getApplicationContext();
+        sp = getSharedPreferences("mrsoft",MODE_PRIVATE);
+
         //初始化操作
         init();
         listView = findViewById(R.id.listView);
@@ -226,11 +241,27 @@ public class MainActivity extends AppCompatActivity {
                     case "胡莱三国自动找矿":
                         MainActivity.script = new ScriptHlsg();
                         break;
-                    case "虚拟大师":
+                    case "触动精灵（测试用）":
                         MainActivity.script = new ScriptSs();
+                        break;
+                    case "泡面三国":
 
+                        MainActivity.script = new ScriptPaoMianSanGuo();
 
                 }
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Map<String,Object> dataMap = listData.get(position);
+                if(dataMap.containsKey("initPage")){
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.CONTEXT,(Class<?>) dataMap.get("initPage"));
+                    startActivity(intent);
+
+                }
+                return true;
             }
         });
 

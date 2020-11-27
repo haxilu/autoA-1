@@ -42,7 +42,7 @@ public abstract class TsFrame {
                     try {
                         body();
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        Log.i("error","位置错误！");
                     }
                 }
             }).start();

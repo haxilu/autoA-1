@@ -40,6 +40,8 @@ public class Fb extends F<Fb> {
     //--------------------------------------------------------------------------------------------------------------------------------------------------
 
     public Fb action(TsFrame ts) throws InterruptedException {
+        if(!getCheckBox())return this;//没有选中复选框
+
         if (ts.getFlag() == 0) return this;
         int[] xy = findColorT();
         //找到颜色

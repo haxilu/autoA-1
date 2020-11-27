@@ -1,6 +1,8 @@
 package com.example.scriptx1.screendo;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.util.Log;
 
 import com.example.scriptx1.MainActivity;
 import com.example.scriptx1.MyAccessibilityService;
@@ -41,7 +43,7 @@ public class ScreenLib {
         try {
             sleep(600);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.i("error","位置错误！");
         }
 
     }
@@ -74,7 +76,7 @@ public class ScreenLib {
         try {
             sleep(t);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Log.i("error","位置错误！");
         }
     }
 
@@ -211,5 +213,18 @@ public class ScreenLib {
             return xy;
         }
         return null;
+    }
+
+    //发送文字
+    public static void putText(String pak, String cls, String text){
+        Intent mIntent = new Intent();
+        ComponentName componentName = new ComponentName(pak, cls);
+        mIntent.setAction(Intent.ACTION_SEND);
+        mIntent.setType("text/plain");
+//        mIntent.putExtra(Intent.EXTRA_TEXT, text);
+        mIntent.putExtra("Kdescription", text);
+        mIntent.setComponent(componentName);
+        MainActivity.CONTEXT.startService(mIntent);
+
     }
 }
