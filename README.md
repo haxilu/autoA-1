@@ -10,29 +10,45 @@
 1. [王者荣耀刷金币脚本（dome）](https://github.com/qq292/autoA/blob/master/app/src/main/java/com/example/scriptx1/ScriptWzRy.java)`这个脚本仅用了不到60行代码`
 ## 示例代码:
 ```java
-public class ScriptTest extends TsFrame {
-   
-    //Fa和Fb 的fcallback参数 传递一个实现Fcallback接口的内部类 作为回调。（复杂逻辑的脚本应该使用它）
-    
-    @Override
-    protected List<Fa> getFa() {
-        List<Fa> fa= new ArrayList<Fa>();
-        //界面特征 
-        fa.add(new Fa("主界面",0xf4c51f, "1|-17|0x000000,-25|-41|0xf4c51f,28|-45|0xf4c51f,21|12|0xf4c51f,18|-8|0x000000,-1|-24|0x000000", 90, 40, 97, 691, 487));
-      
-        return fa;
-    }
+public class ScriptSs extends TsFrame {
 
     @Override
-    public Map<String, List<Fb>> getFb() {
-        Map<String, List<Fb>> map = new HashMap<String, List<Fb>>();//类似于lua中的字典类型
-        List<Fb> 主界面 = new ArrayList<Fb>();//list存放Fb对象
-        主界面.add(new Fb("点击主线任务",0xf4c51f, "1|-17|0x000000,-25|-41|0xf4c51f,28|-45|0xf4c51f,21|12|0xf4c51f,18|-8|0x000000,-1|-24|0x000000", 90, 40, 97, 691, 487))
-        主界面.add(new Fb("点击背包按钮",0xf4c512, "4|-17|0x000000,-25|-41|0xf4c51f,28|-45|0xf4c51f,21|12|0xf4c51f,18|-8|0x000000,-1|-24|0x000000", 90, 40, 97, 691, 487))
-        主界面.add(new Fb("点击返回按钮",0xf4c512, "4|-17|0x000000,-25|-41|0xf4c51f,28|-45|0xf4c51f,21|12|0xf4c51f,18|-8|0x000000,-1|-24|0x000000", 90, 40, 97, 691, 487))
-        
-        map.push(主界面)
-        return map;
+    protected List<Page> getPages() {
+        debug();
+        List<Page> Ppages = new ArrayList<>();
+        Ppages.add(new Page(0x27b0f0, "-15|2|0x27b0f0,17|2|0x27b0f0", 90, 172, 1798, 186, 1811)
+                .setName("首页")
+                .setCallBack(new Fcallback() {
+                    @Override
+                    public void fCallback(int x, int y, int t, int r) throws InterruptedException {
+                        ScreenLib.click(541, 1819);//控制台
+                    }
+                })
+
+        );
+        Ppages.add(new Page(0x27b0f0, "-20|0|0x27b0f0,16|0|0x27b0f0", 90, 534, 1781, 547, 1791)
+                .setName("控制台")
+                .setCallBack(new Fcallback() {
+                    @Override
+                    public void fCallback(int x, int y, int t, int r) throws InterruptedException {
+                        ScreenLib.click(897, 1829);//我的
+                    }
+                })
+
+        );
+
+        Ppages.add(new Page(0x27b0f0, "-14|-3|0x27b0f0,12|-1|0x27b0f0", 90, 894, 1832, 906, 1840)
+                .setName("我的")
+                .setCallBack(new Fcallback() {
+                    @Override
+                    public void fCallback(int x, int y, int t, int r) throws InterruptedException {
+                        ScreenLib.click(179, 1804);//首页
+                    }
+                })
+
+        );
+
+        return Ppages;
     }
 }
 ```
